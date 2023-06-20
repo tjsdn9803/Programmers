@@ -13,15 +13,15 @@ class Solution {
         }
     }
     
-    public int func(int[] a, int[] b){
+    public int findNumber(int[] a, int[] b){
         int answer = 0;
         Arrays.sort(a);
         findDivisor(a[0]);
         Collections.sort(divisor, Collections.reverseOrder());
         
         for(int i : divisor){
-            if(f(a, i)){
-                if(t(b, i)){
+            if(allDivided(a, i)){
+                if(allNotDivided(b, i)){
                     return i;
                 }
             }
@@ -30,11 +30,11 @@ class Solution {
     }
     public int solution(int[] arrayA, int[] arrayB) {
         int answer = 0;
-        answer = Math.max(func(arrayA, arrayB), func(arrayB, arrayA));
+        answer = Math.max(findNumber(arrayA, arrayB), findNumber(arrayB, arrayA));
         
         return answer;
     }
-    public boolean f(int[] arr, int i){
+    public boolean allDivided(int[] arr, int i){
         for(int number : arr){
             if(number % i != 0)
                 return false;
@@ -42,7 +42,7 @@ class Solution {
         return true;
     }
     
-    public boolean t(int[] arr, int i){
+    public boolean allNotDivided(int[] arr, int i){
         for(int number : arr){
             if(number % i == 0)
                 return false;
